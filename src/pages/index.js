@@ -1,12 +1,9 @@
 import EventList from "@/components/Events/EventList";
 import Title from "@/components/UI/Title";
-import { getFeaturedEvents } from "@/db";
+import { getFeaturedEvents } from "@/helpers/api-utils";
 import Head from "next/head";
 
-export default function Home() {
-
-  const featuredEvents = getFeaturedEvents();
-
+export default function Home({ events }) {
   return (
     <>
       <Head>
@@ -17,18 +14,19 @@ export default function Home() {
       </Head>
       <div>
         <Title>Featured Events</Title>
-        <EventList events={featuredEvents} />
+        <EventList events={events} />
       </div>
     </>
   );
 }
 
-export const getServerSideProps = (context) => {
+export const getStaticProps = async (context) => {
   const { params, req, res } = context;
-  
+  const featuredEvents = await getFeaturedEvents();
   return {
     props: {
-
-    }
+      events: featuredEvents,
+    },
+    revalidate: 60 * 30,
   };
 }
