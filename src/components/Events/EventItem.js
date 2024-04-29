@@ -20,7 +20,7 @@ function EventItem({
     const formattedAddress = location.replace(', ', '\n');
 
     return (<li className={classes.item}>
-        <Image src={`/${image}`} alt="Event Image" width={200} height={200} priority />
+        <Image src={`/${image}`} alt="Event Image" width={400} height={400} priority />
         <div className={classes.content}>
             <div className={classes.summary}>
                 <h2>{title}</h2>
