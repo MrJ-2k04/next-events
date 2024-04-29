@@ -1,6 +1,7 @@
 import EventList from "@/components/Events/EventList";
 import EventsSearch from "@/components/Events/EventSearch";
 import { getAllEvents } from "@/helpers/api-utils";
+import Head from "next/head";
 
 import { useRouter } from "next/router";
 
@@ -14,6 +15,9 @@ function Events({ events }) {
     }
 
     return (<>
+        <Head>
+            <title>Next Events</title>
+        </Head>
         <EventsSearch onSearch={handleEventSearch} />
         <EventList events={events} />
     </>);

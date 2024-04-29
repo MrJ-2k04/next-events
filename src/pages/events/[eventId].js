@@ -3,6 +3,7 @@ import EventLogistics from "@/components/EventDetails/EventLogistics";
 import EventSummary from "@/components/EventDetails/EventSummary";
 import ErrorAlert from "@/components/Events/ErrorAlert";
 import { getAllFeaturedEventIds, getEventById } from "@/helpers/api-utils";
+import Head from "next/head";
 
 function EventDetailsPage({ event }) {
     if (!event) {
@@ -12,6 +13,10 @@ function EventDetailsPage({ event }) {
     }
 
     return (<div>
+        <Head>
+            <title>{event.title}</title>
+            <meta name="description" content={event.description} />
+        </Head>
         <EventSummary title={event.title} />
         <EventLogistics
             date={event.date}
